@@ -1,0 +1,7 @@
+{
+  "name": "O‘zbekiston Shaharlari",
+  "description": "O‘zbekistonning go‘zal va qadimiy shaharlari, boy tarixi, me’morchiligi va madaniyatini kashf etish uchun interaktiv ta’limiy va sayyohlik platformasi.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
+

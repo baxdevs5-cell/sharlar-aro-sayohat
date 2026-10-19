@@ -1,0 +1,111 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@layer base {
+  :root {
+    --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+    --font-serif: 'Playfair Display', Georgia, serif;
+  }
+
+  body {
+    font-family: var(--font-sans);
+  }
+
+  h1, h2, h3, .font-serif {
+    font-family: var(--font-serif);
+  }
+}
+
+/* Animation 1: Button Hover (~1.06x scale + subtle shadow) */
+.btn-interactive {
+  transition: transform 220ms cubic-bezier(0.16, 1, 0.3, 1), box-shadow 220ms ease, background-color 180ms ease, color 180ms ease, border-color 180ms ease;
+  will-change: transform;
+}
+
+.btn-interactive:hover {
+  transform: scale(1.06);
+}
+
+.btn-interactive:active {
+  transform: scale(0.98);
+}
+
+/* Animation 2: Page Entrance Fade-in and Rise (700ms - 900ms) */
+@keyframes heroEntrance {
+  0% {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-hero-entrance {
+  animation: heroEntrance 850ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-hero-entrance-delay-1 {
+  animation: heroEntrance 850ms cubic-bezier(0.16, 1, 0.3, 1) 180ms forwards;
+  opacity: 0;
+}
+
+.animate-hero-entrance-delay-2 {
+  animation: heroEntrance 850ms cubic-bezier(0.16, 1, 0.3, 1) 360ms forwards;
+  opacity: 0;
+}
+
+.animate-hero-entrance-delay-3 {
+  animation: heroEntrance 850ms cubic-bezier(0.16, 1, 0.3, 1) 540ms forwards;
+  opacity: 0;
+}
+
+/* Animation 3: Scroll Reveal using CSS classes toggled by IntersectionObserver */
+.reveal-item {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 650ms cubic-bezier(0.16, 1, 0.3, 1), transform 650ms cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+.reveal-item.revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Accessibility: respect prefers-reduced-motion */
+@media (prefers-reduced-motion: reduce) {
+  .btn-interactive:hover,
+  .btn-interactive:active {
+    transform: none !important;
+  }
+  .animate-hero-entrance,
+  .animate-hero-entrance-delay-1,
+  .animate-hero-entrance-delay-2,
+  .animate-hero-entrance-delay-3,
+  .reveal-item {
+    animation: none !important;
+    transition: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(100, 116, 139, 0.3);
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(100, 116, 139, 0.5);
+}
+
